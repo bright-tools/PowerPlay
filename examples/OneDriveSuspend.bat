@@ -1,0 +1,1 @@
+"C:\Program Files\PsTools\PsSuspend.exe" OneDrive
