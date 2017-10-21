@@ -14,8 +14,8 @@ There are a couple of example scripts in the `examples` folder which use PsSuspe
 
 # How to Install
 
-1 Install the latest release of PowerPlay
-1 Go to your "My Documents" folder & create a new sub-directory called "PowerPlay"
-1 Within the newly created "PowerPlay" directory, create 2 new directories called "OnBattery" and "OnMains"
-1 (Optional) Download the example OneDriveResume.bat file and place it within "OnMains"
-1 (Optional) Download the example OneDriveSuspend.bat file and place it within "OnBattery"
+1. Install the latest release of PowerPlay
+1. Go to your "My Documents" folder & create a new sub-directory called "PowerPlay"
+1. Within the newly created "PowerPlay" directory, create 2 new directories called "OnBattery" and "OnMains"
+1. (Optional) Download the example OneDriveResume.bat file and place it within "OnMains"
+1. (Optional) Download the example OneDriveSuspend.bat file and place it within "OnBattery"
