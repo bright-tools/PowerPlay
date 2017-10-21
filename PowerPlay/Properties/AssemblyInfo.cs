@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PowerPlay")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Power Play")]
+[assembly: AssemblyDescription("Small Windows utility to run custom scripts when a laptop is plugged into or unplugged from the power supply")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PowerPlay")]
+[assembly: AssemblyCompany("Bright Silence Ltd")]
+[assembly: AssemblyProduct("Power Play")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
