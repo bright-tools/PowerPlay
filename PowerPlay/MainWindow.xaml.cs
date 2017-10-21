@@ -23,17 +23,26 @@ namespace PowerPlay
             System.Windows.Application.Current.Shutdown();
         }
 
-        static String scriptBase = Environment.SpecialFolder.MyDocuments + System.IO.Path.PathSeparator + "PowerPlay" + System.IO.Path.PathSeparator;
+        static String scriptBase = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + System.IO.Path.DirectorySeparatorChar + "PowerPlay" + System.IO.Path.DirectorySeparatorChar;
 
         static void RunScripts( String dir )
         {
             List<String> files = Directory.EnumerateFiles(dir, "*", SearchOption.AllDirectories)
-               .Where(s => (s.EndsWith(".exe") || s.EndsWith(".bat")) && (s.Count(c => c == '.') == 2))
+               .Where(s => (s.EndsWith(".exe") || s.EndsWith(".bat")))
                .ToList();
 
             foreach( String file in files )
             {
-                System.Diagnostics.Process.Start(file);
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+
+                // Don't want a shell window
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+
+                process.StartInfo.FileName = file;
+
+                process.Start();
             }
         }
 
@@ -49,22 +58,30 @@ namespace PowerPlay
             RunScripts(folder);
         }
 
+        static System.Windows.Forms.PowerLineStatus previousPower = System.Windows.Forms.PowerLineStatus.Unknown;
+
         static void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
             if( e.Mode == PowerModes.StatusChange )
             {
                 PowerStatus power = SystemInformation.PowerStatus;
 
-                switch (power.PowerLineStatus)
+                if (power.PowerLineStatus != previousPower)
                 {
-                    case System.Windows.Forms.PowerLineStatus.Online:
-                        OnMains();
-                        break;
 
-                    case System.Windows.Forms.PowerLineStatus.Offline:
-                        OnBattery();
-                        break;
+                    switch (power.PowerLineStatus)
+                    {
+                        case System.Windows.Forms.PowerLineStatus.Online:
+                            OnMains();
+                            break;
+
+                        case System.Windows.Forms.PowerLineStatus.Offline:
+                            OnBattery();
+                            break;
+                    }
                 }
+
+                previousPower = power.PowerLineStatus;
             }
         }
 
